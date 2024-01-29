@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Budget</title>
     <meta name="description" content="A free personal budget app">
-    <meta name="keywords" content="app free budget finance">
+    <meta name="keywords" content="app, free, budget, finance">
+    <meta name="author" content="Fabio Nolasco">
+    <meta name="language" content="en">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
-<a href="#main" class="skip">Skip to content</a>
+<a href="#main" class="skip" aria-label="Skip to main content">Skip to content</a>
 
-<nav>
+<header>
+    <h1>Personal Budget</h1>
+    <h2>A personal-budget management app</h2>
+</header>
+
+<nav role="navigation">
     <ul>
         <li><a href="/">HomePage</a></li>
         <li><a href="/about.html">About</a></li>
@@ -24,82 +31,82 @@
 
 <div class="hero">
     <h1>Personal Budget</h1>
-    <h3>A personal-budget management app</h3>
+    <h2>A personal-budget management app</h2>
 </div>
 
 <main class="center" id="main">
 
     <div class="page-area">
 
-        <article>
-            <h3>Stay on track</h3>
+        <section>
+            <h2>Stay on track</h2>
             <p>
                 Do you know where you are spending your money? If you really stop to track it down,
                 you would get surprised! Proper budget management depends on real data... and this
                 app will help you with that!
             </p>
-        </article>
+        </section>
 
-        <article>
-            <h3>Alerts</h3>
+        <section>
+            <h2>Alerts</h2>
             <p>
                 What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
             </p>
-        </article>
+        </section>
 
-        <article>
-            <h3>Results</h3>
+        <section>
+            <h2>Results</h2>
             <p>
                 People who stick to a financial plan, budgeting every expense, get out of debt faster!
                 Also, they to live happier lives... since they expend without guilt or fear...
                 because they know it is all good and accounted for.
             </p>
-        </article>
+        </section>
 
-        <article>
-            <h1>Free</h1>
+        <section>
+            <h2>Free</h2>
             <p>
                 This app is free!!! And you are the only one holding your data!
             </p>
-        </article>
+        </section>
 
-        <article>
-            <h1>Stay on track</h1>
+        <section>
+            <h2>Stay on track</h2>
             <p>
                 Do you know where you are spending your money? If you really stop to track it down,
                 you would get surprised! Proper budget management depends on real data... and this
                 app will help you with that!
             </p>
-        </article>
+        </section>
 
-        <article>
-            <h1>Alerts</h1>
+        <section>
+            <h2>Alerts</h2>
             <p>
                 What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
             </p>
-        </article>
+        </section>
 
-        <article>
-            <h1>Results</h1>
+        <section>
+            <h2>Results</h2>
             <p>
                 People who stick to a financial plan, budgeting every expense, get out of debt faster!
                 Also, they to live happier lives... since they expend without guilt or fear...
                 because they know it is all good and accounted for.
             </p>
-        </article>
+        </section>
 
-        <article>
-            <h3>Chart</h3>
+        <section>
+            <h2>Chart</h2>
             <p>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas id="myChart" width="400" height="400" aria-label="Budget Distribution Chart"></canvas>
             </p>
-        </article>
+        </section>
 
     </div>
 
 </main>
 
-<footer class="bottom">
+<footer>
     <div class="center">
         All rights reserved &copy; Fabio Nolasco
     </div>
@@ -110,19 +117,19 @@
 
 <script>
     var dataSource = {
-            datasets: [
-                {
-                    data: [],
-                    backgroundColor: [
-                        '#ffcd56',
-                        '#ff6384',
-                        '#36a2eb',
-                        '#fd6b19',
-                    ]
-                }
-            ],
-            labels: []
-        };
+        datasets: [
+            {
+                data: [],
+                backgroundColor: [
+                    '#ffcd56',
+                    '#ff6384',
+                    '#36a2eb',
+                    '#fd6b19',
+                ]
+            }
+        ],
+        labels: []
+    };
 
     function createChart() {
         var ctx = document.getElementById('myChart').getContext('2d');
