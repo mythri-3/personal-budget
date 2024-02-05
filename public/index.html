@@ -89,16 +89,15 @@
         <section>
             <h2>Results</h2>
             <p>
-                People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                Also, they to live happier lives... since they expend without guilt or fear...
-                because they know it is all good and accounted for.
+                THis app is free!
             </p>
         </section>
 
-        <section>
-            <h2>Chart</h2>
+        <section aria-labelledby="chart-heading" style="height: 250px; width: 250px;">
+            <h2><id="chart-heading">Chart</h2>
             <p>
-                <canvas id="myChart" width="400" height="400" aria-label="Budget Distribution Chart"></canvas>
+                <canvas id="myChartPie" width="250" height="250" alt="Budget Chart"></canvas>
+                <canvas id="myChartDoughnut" width="250" height="250" alt="Budget Chart"></canvas>
             </p>
         </section>
 
@@ -106,52 +105,65 @@
 
 </main>
 
-<footer>
-    <div class="center">
-        All rights reserved &copy; Fabio Nolasco
-    </div>
-</footer>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
 <script>
     var dataSource = {
-        datasets: [
-            {
-                data: [],
-                backgroundColor: [
-                    '#ffcd56',
-                    '#ff6384',
-                    '#36a2eb',
-                    '#fd6b19',
-                ]
-            }
-        ],
-        labels: []
-    };
+            datasets: [
+                {
+                    data: [],
+                    backgroundColor: [
+                        '#ffcd56',
+                        '#ff6384',
+                        '#36a2eb',
+                        '#fd6b19',
+                        '#008080',
+                        '#A52A2A',
+                        '#FFC0CB',
+                        '#800080'
+                    ]
+                }
+            ],
+            labels: []
+        };
 
-    function createChart() {
-        var ctx = document.getElementById('myChart').getContext('2d');
+    function createChartP() {
+        var ctx = document.getElementById('myChartPie').getContext('2d');
         var myPieChart = new Chart(ctx, {
             type: 'pie',
             data: dataSource
         });
     }
 
-    function getBudget() {
-        axios.get('http://localhost:3000/budget')
+    function createChartD() {
+        var ctx = document.getElementById('myChartDoughnut').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: dataSource
+        });
+    }
+
+    function getBudget(type) {
+        axios.get('/budget')
         .then(function (res) {
             for (var i = 0; i < res.data.myBudget.length; i++) {
                 dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
                 dataSource.labels[i] = res.data.myBudget[i].title;
-                createChart();
+           
+            }
+            if (type === 'pie') {
+                createChartP();
+            } else if (type === 'doughnut') {
+                createChartD();
             }
         });
     }
 
-    getBudget();
+    getBudget('pie'); 
+    getBudget('doughnut'); 
 </script>
-
 </body>
 </html>
